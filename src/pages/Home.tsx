@@ -1,339 +1,658 @@
 import { Link } from "react-router-dom";
+ import { Variants } from "framer-motion";
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import Navigation from "@/components/Navigation"
+import { motion } from "framer-motion"
 import { 
-  Briefcase, Target, MessageSquare, FileText, Code2, 
-  TrendingUp, Users, CheckCircle, Cpu, Search, 
-  Users2, FolderGit2, ArrowRight 
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+  Briefcase, 
+  TrendingUp, 
+  Users, 
+  MessageSquare, 
+  FileText, 
+  Target,
+  CheckCircle,
+  ArrowRight,
+  Sparkles,
+  Shield,
+  Zap,
+  Code2,
+  Cpu
+} from "lucide-react"
 
 export default function Home() {
-  const featureCards = [
+  const heroFeatures = [
     {
+      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop",
       title: "Find Jobs",
-      description: "AI-powered job search with personalized recommendations",
-      icon: Search,
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&h=400&fit=crop",
+      description: "Personalized AI job matches",
       link: "/jobs"
     },
     {
-      title: "Mock Interviews",
-      description: "Practice with real-time AI feedback and improve your skills",
-      icon: MessageSquare,
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=300&fit=crop",
+      title: "Real-time Mock Interview Practice",
+      description: "Live AI feedback — technical & behavioral",
       link: "/mock-interview"
     },
     {
-      title: "Live Projects",
-      description: "Work on real projects from startups and build your portfolio",
-      icon: FolderGit2,
-      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop",
+      title: "Work on Live Projects",
+      description: "Build real portfolio pieces with startups",
       link: "/projects"
     },
     {
+      image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=300&fit=crop",
       title: "Find Mentors",
-      description: "Connect with industry experts for personalized career guidance",
-      icon: Users2,
-      image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&h=400&fit=crop",
+      description: "Get one-on-one guidance from experts",
       link: "/mentors"
     }
-  ];
+  ]
 
-  const features = [
-    {
-      icon: Target,
-      title: "AI Job Matching",
-      description: "Smart algorithms match you with the perfect opportunities based on your skills and preferences."
-    },
-    {
-      icon: MessageSquare,
-      title: "Real-time Interview Practice",
-      description: "Get instant feedback on your answers with AI-powered mock interviews."
-    },
-    {
-      icon: FileText,
-      title: "Resume Enhancement",
-      description: "AI analyzes your resume and suggests improvements to stand out."
-    },
-    {
-      icon: Code2,
-      title: "Skill Gap Analysis",
-      description: "Identify what skills you need to learn for your dream job."
-    },
-    {
-      icon: TrendingUp,
-      title: "Career Analytics",
-      description: "Track your progress and get insights on your career trajectory."
-    },
-    {
-      icon: Users,
-      title: "Mentor Network",
-      description: "Learn from experienced professionals in your field."
-    },
-    {
-      icon: Briefcase,
-      title: "Live Projects",
-      description: "Work on real projects to build your portfolio and gain experience."
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
     }
-  ];
+  }
 
-  const benefits = [
-    "AI-powered job recommendations tailored to your skills",
-    "Practice interviews with instant, actionable feedback",
-    "Access to exclusive job opportunities from top companies",
-    "Build your portfolio with real-world projects",
-    "Connect with mentors who've been where you want to go",
-    "Track your career progress with detailed analytics"
-  ];
+  const badgeVariants = {
+  hidden: { opacity: 0, scale: 0.8, y: 30 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.42, 0, 0.58, 1] as const, // ✅ exact tuple, type-safe
+    },
+  },
+};
+
+
+ 
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.8, y: 50, rotateX: 15 },
+  visible: (index: number = 0) => ({
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    rotateX: 0,
+    transition: {
+      duration: 0.6,
+      delay: index * 0.1,
+      ease: [0.42, 0, 0.58, 1] as const, // ✅ Type-safe easing
+    },
+  }),
+};
+
+
+  const headingVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      delay: 0.3,
+      ease: "easeInOut", // ✅ valid
+    },
+  },
+};
+
+
+  const ctaVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        delay: 1.2,
+        ease: [0.6, 0.05, 0.01, 0.9]
+      }
+    }
+  }
 
   return (
     <div className="min-h-screen">
+
       {/* Hero Section */}
-      <section className="gradient-hero py-20 md:py-32">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto space-y-8 animate-fade-in">
-            {/* Badge */}
-            <Badge variant="secondary" className="px-4 py-2 text-sm">
-              <Cpu className="w-4 h-4 mr-2 animate-pulse-glow" />
+      <section className="pt-24 pb-12 md:pt-32 md:pb-20 md:px-4 relative overflow-hidden">
+        {/* Background Elements */}
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+          className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+        />
+
+        <div className="container mx-auto relative z-10">
+          <motion.div
+            variants={badgeVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-center mb-6 md:mb-12"
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium mb-6 md:mb-8 backdrop-blur-sm border border-primary/20"
+            >
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              >
+                <Cpu className="w-3 h-3 md:w-4 md:h-4" />
+              </motion.div>
               AI-Powered Job Search & Preparation Platform
-            </Badge>
+            </motion.div>
+          </motion.div>
 
-            {/* Heading */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-              From Skills to Career —{" "}
-              <span className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-                Faster
-              </span>
-            </h1>
-
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              Find jobs, practice with real-time AI feedback, work on live projects and connect with mentors
-            </p>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Link to="/signup">
-                <Button size="lg" className="text-lg px-8">
-                  Get Started Free
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link to="/jobs">
-                <Button size="lg" variant="outline" className="text-lg px-8">
-                  Browse Jobs
-                </Button>
-              </Link>
-            </div>
-
-            {/* Feature Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-12">
-              {featureCards.map((card, index) => (
-                <Link key={index} to={card.link}>
-                  <Card className="hover-lift cursor-pointer h-full overflow-hidden group">
-                    <div className="relative h-40 overflow-hidden">
-                      <img 
-                        src={card.image} 
-                        alt={card.title}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+          {/* Feature Cards Grid */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6 mb-8 md:mb-16"
+          >
+            {heroFeatures.map((feature, index) => (
+              <motion.div
+                key={index}
+                custom={index}
+                variants={cardVariants}
+                whileHover={{ 
+                  y: -12,
+                  scale: 1.02,
+                  transition: { duration: 0.3 }
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Link to={feature.link}>
+                  <Card className="overflow-hidden border hover:border-primary/50 md:border-2 transition-all cursor-pointer h-full group relative">
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    />
+                    <div className="relative overflow-hidden">
+                      <motion.img
+                        src={feature.image}
+                        alt={feature.title}
+                        className="w-full h-20 md:h-48 object-cover"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.6 }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <card.icon className="absolute bottom-3 left-3 h-6 w-6 text-white" />
+                      <motion.div 
+                        className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent"
+                        initial={{ opacity: 0 }}
+                        whileHover={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
                     </div>
-                    <CardHeader>
-                      <CardTitle className="text-lg">{card.title}</CardTitle>
-                      <CardDescription>{card.description}</CardDescription>
-                    </CardHeader>
+                    <CardContent className="pt-2 pb-2 px-2 md:pt-4 md:pb-6 md:px-6 relative">
+                      <h3 className="text-xs md:text-lg font-bold mb-0.5 md:mb-2 leading-tight">{feature.title}</h3>
+                      <p className="text-[10px] md:text-sm text-muted-foreground mb-1 md:mb-3 line-clamp-2 leading-tight">
+                        {feature.description}
+                      </p>
+                      <motion.div 
+                        className="flex items-center text-primary text-[10px] md:text-sm font-medium"
+                        whileHover={{ x: 5 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        Learn more
+                        <ArrowRight className="ml-0.5 md:ml-1 w-2.5 h-2.5 md:w-4 md:h-4" />
+                      </motion.div>
+                    </CardContent>
                   </Card>
                 </Link>
-              ))}
-            </div>
-          </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Main Heading and CTA */}
+          <motion.div
+            variants={headingVariants}
+            initial="hidden"
+            animate="visible"
+            className="text-center"
+          >
+            <motion.h1 
+              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              From Skills to Career — Faster
+            </motion.h1>
+            <motion.p 
+              className="text-sm md:text-lg lg:text-xl text-muted-foreground mb-5 md:mb-8 max-w-3xl mx-auto px-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1 }}
+            >
+              Find jobs, practice with real-time AI feedback, work on live projects and connect with mentors — all in one place.
+            </motion.p>
+            <motion.div
+              variants={ctaVariants}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-col sm:flex-row gap-2 md:gap-4 justify-center px-4"
+            >
+              <Link to="/signup">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button size="default" className="md:text-lg md:px-8 w-full sm:w-auto group relative overflow-hidden">
+                    <motion.span
+                      className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"
+                      animate={{
+                        x: ['-100%', '100%']
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                    <span className="relative flex items-center justify-center gap-2">
+                      Get Started Free
+                      <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </Button>
+                </motion.div>
+              </Link>
+              <Link to="/jobs">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button size="default" variant="outline" className="md:text-lg md:px-8 w-full sm:w-auto">
+                    Browse Jobs
+                  </Button>
+                </motion.div>
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Job Guarantee Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/5 to-primary/10">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <Card className="overflow-hidden shadow-2xl">
-              <div className="grid md:grid-cols-2 gap-0">
-                <div className="relative h-64 md:h-auto">
-                  <img 
-                    src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&h=600&fit=crop"
-                    alt="Job Guarantee Program"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
-                </div>
-                <CardContent className="p-8 md:p-12 space-y-6">
-                  <div className="space-y-2">
-                    <Badge className="mb-2">Premium Program</Badge>
-                    <h2 className="text-3xl md:text-4xl font-bold">Job Guarantee Program</h2>
-                    <p className="text-muted-foreground text-lg">
-                      Fast-track your career with our intensive program
-                    </p>
-                  </div>
-
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-bold">₹50,000</span>
-                    <Badge variant="secondary">80% Refund Guarantee</Badge>
-                  </div>
-
-                  <ul className="space-y-3">
-                    {[
-                      "One-on-one mentorship with industry experts",
-                      "Work on 3+ real projects for your portfolio",
-                      "6+ mock interviews with detailed feedback",
-                      "Direct job referrals to partner companies",
-                      "Career coaching and resume optimization",
-                    ].map((item, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Link to="/job-guarantee">
-                    <Button size="lg" className="w-full">
-                      Learn More
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </div>
-            </Card>
-
-            {/* Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              {[
-                { label: "Program Duration", value: "2.5 Months" },
-                { label: "Success Rate", value: "80% Refund" },
-                { label: "Mock Interviews", value: "6+ Sessions" }
-              ].map((stat, index) => (
-                <Card key={index} className="text-center p-6">
-                  <p className="text-3xl font-bold text-primary">{stat.value}</p>
-                  <p className="text-muted-foreground mt-2">{stat.label}</p>
-                </Card>
-              ))}
+      {/* Job Guarantee Program Highlight Section */}
+      <section className="py-16 md:py-20 bg-gradient-to-br from-primary/5 via-background to-primary/5 relative overflow-hidden">
+        <motion.div
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.1, 0.2, 0.1],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute -top-24 -right-24 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
+        />
+        
+        <div className="container mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-8 md:mb-12"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-primary/5 text-primary text-sm font-medium mb-4 border border-primary/20">
+              <Shield className="w-4 h-4" />
+              Job Guarantee Program
             </div>
-          </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              Get Job-Ready in 2.5 Months
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+              A comprehensive program with guaranteed results — or get 80% of your money back
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <Link to="/job-guarantee">
+              <Card className="overflow-hidden border-2 hover:border-primary/50 transition-all cursor-pointer group max-w-5xl mx-auto hover:shadow-2xl">
+                <div className="grid md:grid-cols-2 gap-0">
+                  {/* Image Side */}
+                  <div className="relative h-64 md:h-auto overflow-hidden">
+                    <motion.img
+                      src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop"
+                      alt="Job Guarantee Program"
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.6 }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-background/80 to-transparent md:hidden" />
+                    <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-bold">
+                      ₹50,000
+                    </div>
+                    <div className="absolute bottom-4 left-4 bg-background/95 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium border border-border">
+                      80% Refund Guarantee
+                    </div>
+                  </div>
+
+                  {/* Content Side */}
+                  <CardContent className="p-6 md:p-8 lg:p-10 flex flex-col justify-center">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary transition-colors">
+                      2.5-Month Job Guarantee Program
+                    </h3>
+                    <p className="text-muted-foreground mb-6 leading-relaxed">
+                      A structured program designed to transform you into a job-ready professional. Get personalized mentorship, work on real projects, practice with 6+ mock interviews, and receive guaranteed job referrals.
+                    </p>
+                    
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-semibold">One-on-One Mentorship</p>
+                          <p className="text-sm text-muted-foreground">Personalized guidance from industry experts</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-semibold">Real Project Experience</p>
+                          <p className="text-sm text-muted-foreground">Build portfolio-worthy projects</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-semibold">6+ Mock Interviews</p>
+                          <p className="text-sm text-muted-foreground">Practice across different technologies</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                        <div>
+                          <p className="font-semibold">Job Referrals</p>
+                          <p className="text-sm text-muted-foreground">Direct referrals to partner companies</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <motion.div
+                      className="inline-flex items-center gap-2 text-primary font-semibold group-hover:gap-4 transition-all"
+                      whileHover={{ x: 5 }}
+                    >
+                      Learn More & Apply
+                      <ArrowRight className="w-5 h-5" />
+                    </motion.div>
+                  </CardContent>
+                </div>
+              </Card>
+            </Link>
+          </motion.div>
+
+          {/* Quick Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto mt-8 md:mt-12"
+          >
+            <div className="text-center p-4 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50">
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-1">2.5</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Months Duration</div>
+            </div>
+            <div className="text-center p-4 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50">
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-1">80%</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Refund Guarantee</div>
+            </div>
+            <div className="text-center p-4 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50">
+              <div className="text-2xl md:text-3xl font-bold text-primary mb-1">6+</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Mock Interviews</div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Everything You Need to Land Your Dream Job
-            </h2>
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Powerful Features for Job Seekers</h2>
             <p className="text-xl text-muted-foreground">
-              AI-powered tools and human expertise to accelerate your career
+              Everything you need to land your dream job
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {features.map((feature, index) => (
-              <Card key={index} className="hover-lift">
-                <CardHeader>
-                  <feature.icon className="h-12 w-12 text-primary mb-4" />
-                  <CardTitle>{feature.title}</CardTitle>
-                  <CardDescription className="text-base">
-                    {feature.description}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="border-2 hover:border-primary/50 transition-all">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <Target className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Smart Job Matching</h3>
+                <p className="text-muted-foreground">
+                  AI analyzes your skills and experience to recommend the perfect jobs for you
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 hover:border-primary/50 transition-all">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <MessageSquare className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Mock Interviews</h3>
+                <p className="text-muted-foreground">
+                  Practice with AI-powered interview simulations and get instant feedback
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 hover:border-primary/50 transition-all">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <FileText className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Resume Enhancement</h3>
+                <p className="text-muted-foreground">
+                  Get AI-powered suggestions to make your resume stand out from the crowd
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 hover:border-primary/50 transition-all">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <Code2 className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Live Projects</h3>
+                <p className="text-muted-foreground">
+                  Work on real-world projects to gain practical experience and build your portfolio
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 hover:border-primary/50 transition-all">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <TrendingUp className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Skill Analysis</h3>
+                <p className="text-muted-foreground">
+                  Identify skill gaps and get personalized learning recommendations
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 hover:border-primary/50 transition-all">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <Users className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Mentor Connect</h3>
+                <p className="text-muted-foreground">
+                  Connect with industry experts who can guide your career journey
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 hover:border-primary/50 transition-all">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <Briefcase className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Company Insights</h3>
+                <p className="text-muted-foreground">
+                  Get detailed information about company culture, reviews, and salary data
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="py-20 bg-muted/50">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">How It Works</h2>
+      <section className="py-20">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">How It Works</h2>
             <p className="text-xl text-muted-foreground">
-              Three simple steps to your dream career
+              Get started in 3 simple steps
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              {
-                step: "01",
-                title: "Create Your Profile",
-                description: "Tell us about your skills, experience, and career goals. Our AI will analyze and match you with the best opportunities."
-              },
-              {
-                step: "02",
-                title: "Prepare & Practice",
-                description: "Use our AI tools to enhance your resume, practice interviews, and identify skill gaps. Work on live projects to build your portfolio."
-              },
-              {
-                step: "03",
-                title: "Apply & Succeed",
-                description: "Apply to matched jobs with confidence. Track applications, get referrals, and land your dream role faster."
-              }
-            ].map((item, index) => (
-              <div key={index} className="text-center space-y-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold">
-                  {item.step}
-                </div>
-                <h3 className="text-2xl font-bold">{item.title}</h3>
-                <p className="text-muted-foreground">{item.description}</p>
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                1
               </div>
-            ))}
+              <h3 className="text-xl font-bold mb-2">Create Your Profile</h3>
+              <p className="text-muted-foreground">
+                Sign up and tell us about your skills, experience, and career goals
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                2
+              </div>
+              <h3 className="text-xl font-bold mb-2">Get Matched</h3>
+              <p className="text-muted-foreground">
+                Our AI finds the best job opportunities that match your profile
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                3
+              </div>
+              <h3 className="text-xl font-bold mb-2">Land Your Dream Job</h3>
+              <p className="text-muted-foreground">
+                Practice interviews, enhance your resume, and apply with confidence
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 gradient-primary text-primary-foreground">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto text-center">
-            {[
-              { value: "50,000+", label: "Active Jobs" },
-              { value: "10,000+", label: "Companies" },
-              { value: "100,000+", label: "Job Seekers" },
-              { value: "500+", label: "Expert Mentors" }
-            ].map((stat, index) => (
-              <div key={index}>
-                <p className="text-4xl md:text-5xl font-bold mb-2">{stat.value}</p>
-                <p className="text-lg opacity-90">{stat.label}</p>
-              </div>
-            ))}
+      <section className="py-20 bg-primary text-primary-foreground">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">50K+</div>
+              <div className="text-primary-foreground/80">Active Jobs</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">10K+</div>
+              <div className="text-primary-foreground/80">Companies</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">100K+</div>
+              <div className="text-primary-foreground/80">Job Seekers</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">500+</div>
+              <div className="text-primary-foreground/80">Mentors</div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
       <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div className="space-y-6">
-              <h2 className="text-3xl md:text-5xl font-bold">
-                Why Choose JobFinder?
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                We combine cutting-edge AI technology with human expertise to give you an unfair advantage in your job search.
-              </p>
-              <ul className="space-y-4">
-                {benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-lg">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold mb-6">Why Choose JobFinder?</h2>
+              <div className="space-y-4">
+                <div className="flex gap-4">
+                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-bold mb-1">AI-Powered Matching</h3>
+                    <p className="text-muted-foreground">
+                      Advanced algorithms match you with jobs that truly fit your skills and goals
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-bold mb-1">Interview Preparation</h3>
+                    <p className="text-muted-foreground">
+                      Practice with realistic mock interviews and get detailed feedback
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-bold mb-1">Career Growth</h3>
+                    <p className="text-muted-foreground">
+                      Connect with mentors and get personalized career guidance
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <CheckCircle className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-bold mb-1">Company Transparency</h3>
+                    <p className="text-muted-foreground">
+                      Get insights into company culture, salaries, and employee reviews
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="relative">
-              <img 
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop"
-                alt="Team collaboration"
-                className="rounded-lg shadow-2xl"
+            <div>
+              <img
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop"
+                alt="Team working"
+                className="rounded-lg shadow-xl"
               />
             </div>
           </div>
@@ -341,75 +660,73 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 gradient-primary text-primary-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <h2 className="text-3xl md:text-5xl font-bold">
-              Ready to Find Your Dream Job?
-            </h2>
-            <p className="text-xl opacity-90">
-              Join thousands of job seekers who are accelerating their careers with JobFinder
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/signup">
-                <Button size="lg" variant="secondary" className="text-lg px-8">
-                  Sign Up Free
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link to="/login">
-                <Button size="lg" variant="outline" className="text-lg px-8 bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
-                  Log In
-                </Button>
-              </Link>
-            </div>
+      <section className="py-20 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground">
+        <div className="container mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Ready to Find Your Dream Job?
+          </h2>
+          <p className="text-xl mb-8 text-primary-foreground/90 max-w-2xl mx-auto">
+            Join thousands of job seekers who have found their perfect role with JobFinder
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/signup">
+              <Button size="lg" variant="secondary" className="text-lg px-8">
+                Sign Up Now
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </Link>
+            <Link to="/login">
+              <Button size="lg" variant="outline" className="text-lg px-8 bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+                Log In
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t">
-        <div className="container mx-auto px-4">
+      <footer className="py-12 border-t border-border">
+        <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h3 className="font-bold mb-4">For Job Seekers</h3>
+              <h4 className="font-bold mb-4">For Job Seekers</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/jobs" className="hover:text-primary">Browse Jobs</Link></li>
-                <li><Link to="/mock-interview" className="hover:text-primary">Mock Interview</Link></li>
-                <li><Link to="/resume-enhancer" className="hover:text-primary">Resume Enhancer</Link></li>
-                <li><Link to="/mentors" className="hover:text-primary">Find Mentors</Link></li>
+                <li><Link to="/jobs">Browse Jobs</Link></li>
+                <li><Link to="/dashboard">My Dashboard</Link></li>
+                <li><Link to="/mock-interview">Mock Interviews</Link></li>
+                <li><Link to="/resume-enhancer">Resume Tools</Link></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-bold mb-4">For Companies</h3>
+              <h4 className="font-bold mb-4">For Companies</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/company-dashboard" className="hover:text-primary">Post Jobs</Link></li>
-                <li><Link to="/pricing" className="hover:text-primary">Pricing</Link></li>
-                <li><Link to="/company-insights" className="hover:text-primary">Company Insights</Link></li>
+                <li><Link to="/company-dashboard">Post Jobs</Link></li>
+                <li><Link to="/company-dashboard">Find Candidates</Link></li>
+                <li><Link to="/pricing">Pricing</Link></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-bold mb-4">Resources</h3>
+              <h4 className="font-bold mb-4">Resources</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/blog" className="hover:text-primary">Blog</Link></li>
-                <li><Link to="/about" className="hover:text-primary">About Us</Link></li>
-                <li><Link to="/contact" className="hover:text-primary">Contact</Link></li>
+                <li><Link to="/mentors">Find Mentors</Link></li>
+                <li><Link to="/analytics">Career Analytics</Link></li>
+                <li><Link to="/blog">Blog</Link></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-bold mb-4">Company</h3>
+              <h4 className="font-bold mb-4">Company</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/job-guarantee" className="hover:text-primary">Job Guarantee</Link></li>
-                <li><Link to="/privacy" className="hover:text-primary">Privacy Policy</Link></li>
-                <li><Link to="/analytics" className="hover:text-primary">Analytics</Link></li>
+                <li><Link to="/about">About Us</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+                <li><Link to="/privacy">Privacy Policy</Link></li>
               </ul>
             </div>
           </div>
-          <div className="border-t pt-8 text-center text-sm text-muted-foreground">
+          <div className="text-center text-sm text-muted-foreground pt-8 border-t border-border">
             <p>&copy; 2024 JobFinder. All rights reserved.</p>
           </div>
         </div>
       </footer>
     </div>
-  );
+  )
 }
