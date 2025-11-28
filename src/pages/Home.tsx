@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
- import { Variants } from "framer-motion";
+import { Variants } from "framer-motion";
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Navigation from "@/components/Navigation"
@@ -67,13 +67,10 @@ export default function Home() {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.42, 0, 0.58, 1] as const, // ✅ exact tuple, type-safe
+      ease: [0.42, 0, 0.58, 1] as const,
     },
   },
 };
-
-
- 
 
 const cardVariants: Variants = {
   hidden: { opacity: 0, scale: 0.8, y: 50, rotateX: 15 },
@@ -85,11 +82,10 @@ const cardVariants: Variants = {
     transition: {
       duration: 0.6,
       delay: index * 0.1,
-      ease: [0.42, 0, 0.58, 1] as const, // ✅ Type-safe easing
+      ease: [0.42, 0, 0.58, 1] as const,
     },
   }),
 };
-
 
   const headingVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -99,11 +95,10 @@ const cardVariants: Variants = {
     transition: {
       duration: 0.6,
       delay: 0.3,
-      ease: "easeInOut", // ✅ valid
+      ease: "easeInOut",
     },
   },
 };
-
 
   const ctaVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -122,7 +117,7 @@ const cardVariants: Variants = {
     <div className="min-h-screen">
 
       {/* Hero Section */}
-      <section className="pt-24 pb-12 md:pt-32 md:pb-20 md:px-4 relative overflow-hidden">
+      <section className="pt-24 pb-12 md:pt-32 md:pb-20 relative overflow-hidden">
         {/* Background Elements */}
         <motion.div
           animate={{
@@ -150,7 +145,7 @@ const cardVariants: Variants = {
           className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
         />
 
-        <div className="container mx-auto relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             variants={badgeVariants}
             initial="hidden"
@@ -176,7 +171,7 @@ const cardVariants: Variants = {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6 mb-8 md:mb-16"
+            className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 mb-8 md:mb-16"
           >
             {heroFeatures.map((feature, index) => (
               <motion.div
@@ -210,19 +205,19 @@ const cardVariants: Variants = {
                         transition={{ duration: 0.3 }}
                       />
                     </div>
-                    <CardContent className="pt-2 pb-2 px-2 md:pt-4 md:pb-6 md:px-6 relative">
+                    <CardContent className="pt-2 pb-2 px-2 md:pt-3 md:pb-4 md:px-4 relative">
                       <h3 className="text-xs md:text-lg font-bold mb-0.5 md:mb-2 leading-tight">{feature.title}</h3>
                       <p className="text-[10px] md:text-sm text-muted-foreground mb-1 md:mb-3 line-clamp-2 leading-tight">
                         {feature.description}
                       </p>
-                      <motion.div 
+                      {/* <motion.div 
                         className="flex items-center text-primary text-[10px] md:text-sm font-medium"
                         whileHover={{ x: 5 }}
                         transition={{ duration: 0.3 }}
                       >
                         Learn more
                         <ArrowRight className="ml-0.5 md:ml-1 w-2.5 h-2.5 md:w-4 md:h-4" />
-                      </motion.div>
+                      </motion.div> */}
                     </CardContent>
                   </Card>
                 </Link>
@@ -246,7 +241,7 @@ const cardVariants: Variants = {
               From Skills to Career — Faster
             </motion.h1>
             <motion.p 
-              className="text-sm md:text-lg lg:text-xl text-muted-foreground mb-5 md:mb-8 max-w-3xl mx-auto px-4"
+              className="text-sm md:text-lg lg:text-xl text-muted-foreground mb-5 md:mb-8 max-w-3xl mx-auto px-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1 }}
@@ -257,7 +252,7 @@ const cardVariants: Variants = {
               variants={ctaVariants}
               initial="hidden"
               animate="visible"
-              className="flex flex-col sm:flex-row gap-2 md:gap-4 justify-center px-4"
+              className="flex flex-col sm:flex-row gap-2 md:gap-4 justify-center px-2"
             >
               <Link to="/signup">
                 <motion.div
@@ -313,7 +308,7 @@ const cardVariants: Variants = {
           className="absolute -top-24 -right-24 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
         />
         
-        <div className="container mx-auto relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -419,7 +414,7 @@ const cardVariants: Variants = {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-3 gap-4 md:gap-8 max-w-3xl mx-auto mt-8 md:mt-12"
+            className="grid grid-cols-3 gap-4 md:gap-6 max-w-3xl mx-auto mt-8 md:mt-12"
           >
             <div className="text-center p-4 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50">
               <div className="text-2xl md:text-3xl font-bold text-primary mb-1">2.5</div>
@@ -439,7 +434,7 @@ const cardVariants: Variants = {
 
       {/* Features Section */}
       <section className="py-20 bg-muted/30">
-        <div className="container mx-auto">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Powerful Features for Job Seekers</h2>
             <p className="text-xl text-muted-foreground">
@@ -447,7 +442,7 @@ const cardVariants: Variants = {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="border-2 hover:border-primary/50 transition-all">
               <CardContent className="pt-6">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
@@ -537,7 +532,7 @@ const cardVariants: Variants = {
 
       {/* How It Works */}
       <section className="py-20">
-        <div className="container mx-auto">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">How It Works</h2>
             <p className="text-xl text-muted-foreground">
@@ -545,7 +540,7 @@ const cardVariants: Variants = {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             <div className="text-center">
               <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 1
@@ -581,8 +576,8 @@ const cardVariants: Variants = {
 
       {/* Stats Section */}
       <section className="py-20 bg-primary text-primary-foreground">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
               <div className="text-4xl md:text-5xl font-bold mb-2">50K+</div>
               <div className="text-primary-foreground/80">Active Jobs</div>
@@ -605,8 +600,8 @@ const cardVariants: Variants = {
 
       {/* Benefits Section */}
       <section className="py-20">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h2 className="text-4xl font-bold mb-6">Why Choose JobFinder?</h2>
               <div className="space-y-4">
@@ -661,7 +656,7 @@ const cardVariants: Variants = {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground">
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Ready to Find Your Dream Job?
           </h2>
@@ -686,8 +681,8 @@ const cardVariants: Variants = {
 
       {/* Footer */}
       <footer className="py-12 border-t border-border">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
             <div>
               <h4 className="font-bold mb-4">For Job Seekers</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">

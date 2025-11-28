@@ -29,6 +29,8 @@ import CompanyAllCandidates from "./pages/company-dashboard/candidates/page";
 import CompanyAnalytics from "./pages/company-dashboard/analytics/page";
 import CompanyReports from "./pages/company-dashboard/reports/page";
 import CompaniesPage from "./pages/Companies";
+import ResourcesPage from "./pages/Resources";
+import BottomNavigation from "./components/BottomNavigation";
 
 const queryClient = new QueryClient();
 
@@ -64,9 +66,11 @@ const App = () => (
             <Route path="/company-dashboard/analytics" element={<CompanyAnalytics />} />
             <Route path="/company-dashboard/reports" element={<CompanyReports />} />
             <Route path="/companies" element={<CompaniesPage />} />
+            <Route path="/resources" element={<ResourcesPage />} />
             {/* Keep this at the bottom */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <BottomNavigation />
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>

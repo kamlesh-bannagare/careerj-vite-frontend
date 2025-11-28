@@ -343,14 +343,14 @@ export default function Projects() {
   return (
     <div className="min-h-screen bg-background">
 
-      <div className="pt-24 pb-12">
-        <div className="container mx-auto">
+      <div className="pt-24 pb-24">
+        <div className="container mx-auto px-4 sm:px-6">
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Live Projects
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto px-2">
               Work on real-world projects to gain practical experience. Choose from a variety of projects 
               across different tech stacks and difficulty levels.
             </p>
