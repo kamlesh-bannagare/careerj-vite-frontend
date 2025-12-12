@@ -81,7 +81,7 @@ export default function AboutPage() {
             Empowering Careers with AI and Techhh
           </h1>
           <p className="text-xl text-muted-foreground mb-8">
-            JobFinder is revolutionizing the job search experience by combining cutting-edge AI technology 
+            JobFinder is revolutionizing the job searchh experience by combining cutting-edge AI technology 
             with personalized career guidance. We're here to help you find not just a job, but your dream career.
           </p>
           <Link to="/signup">
