@@ -26,6 +26,9 @@ node {
             rsync -av --delete --exclude='.git' --exclude='node_modules' . ${appDir}
 
             cd ${appDir}
+            # FIX
+            sudo rm -rf node_modules
+            sudo rm -f package-lock.json
             sudo npm install
             sudo npm run build
             sudo fuser -k 3000/tcp || 
