@@ -78,7 +78,7 @@ export default function AboutPage() {
       <section className="pt-24 pb-12 px-4">
         <div className="container mx-auto max-w-4xl text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Empowering Careers with AI
+            Empowering Careers with AI and Tech
           </h1>
           <p className="text-xl text-muted-foreground mb-8">
             JobFinder is revolutionizing the job search experience by combining cutting-edge AI technology 
