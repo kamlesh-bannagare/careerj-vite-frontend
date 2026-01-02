@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@/components/theme-provider"; // ✅ Add this
+import { ThemeProvider } from "@/components/theme-provider";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -30,13 +30,15 @@ import CompanyAnalytics from "./pages/company-dashboard/analytics/page";
 import CompanyReports from "./pages/company-dashboard/reports/page";
 import CompaniesPage from "./pages/Companies";
 import ResourcesPage from "./pages/Resources";
+import PrivacyPage from "./pages/Privacy";
+import TermsPage from "./pages/Terms";
 import BottomNavigation from "./components/BottomNavigation";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider> {/* ✅ Wrap everything */}
+    <ThemeProvider>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -62,11 +64,13 @@ const App = () => (
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/company-dashboard" element={<CompanyDashboard />} />
-             <Route path="/company-dashboard/candidates" element={<CompanyAllCandidates />} />
+            <Route path="/company-dashboard/candidates" element={<CompanyAllCandidates />} />
             <Route path="/company-dashboard/analytics" element={<CompanyAnalytics />} />
             <Route path="/company-dashboard/reports" element={<CompanyReports />} />
             <Route path="/companies" element={<CompaniesPage />} />
             <Route path="/resources" element={<ResourcesPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
             {/* Keep this at the bottom */}
             <Route path="*" element={<NotFound />} />
           </Routes>
