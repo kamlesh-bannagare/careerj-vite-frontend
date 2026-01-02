@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Variants } from "framer-motion";
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import Navigation from "@/components/Navigation"
+import Testimonials from "@/components/Testimonials"
 import { motion } from "framer-motion"
 import { 
   Briefcase, 
@@ -87,20 +87,20 @@ const cardVariants: Variants = {
   }),
 };
 
-  const headingVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      delay: 0.3,
-      ease: "easeInOut",
+  const headingVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        delay: 0.3,
+        ease: "easeInOut" as const,
+      },
     },
-  },
-};
+  };
 
-  const ctaVariants = {
+  const ctaVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -108,10 +108,10 @@ const cardVariants: Variants = {
       transition: {
         duration: 0.6,
         delay: 1.2,
-        ease: [0.6, 0.05, 0.01, 0.9]
-      }
-    }
-  }
+        ease: [0.6, 0.05, 0.01, 0.9] as const,
+      },
+    },
+  };
 
   return (
     <div className="min-h-screen">
@@ -654,6 +654,9 @@ const cardVariants: Variants = {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <Testimonials />
+
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground">
         <div className="container mx-auto px-4 sm:px-6 text-center">
@@ -714,6 +717,7 @@ const cardVariants: Variants = {
                 <li><Link to="/about">About Us</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
                 <li><Link to="/privacy">Privacy Policy</Link></li>
+                <li><Link to="/terms">Terms of Service</Link></li>
               </ul>
             </div>
           </div>
