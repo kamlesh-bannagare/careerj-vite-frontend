@@ -1,23 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Moon, Sun, Briefcase } from "lucide-react";
+import { Menu, X, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import NotificationsDropdown from "@/components/NotificationsDropdown";
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const menuRef = useRef(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
-  // ✅ Close menu when route changes
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
-  // ✅ Close dropdown on outside click
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setMobileMenuOpen(false);
       }
     }
@@ -49,7 +48,8 @@ export default function Navigation() {
             <Link to="/resources" className="text-sm font-medium hover:text-primary transition-colors">Resources</Link>
           </div>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-2">
+            <NotificationsDropdown />
             <ThemeToggle />
             <Link to="/login"><Button variant="ghost">Log In</Button></Link>
             <Link to="/signup"><Button>Get Started</Button></Link>
@@ -57,6 +57,7 @@ export default function Navigation() {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
+            <NotificationsDropdown />
             <ThemeToggle />
             <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
