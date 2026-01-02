@@ -27,6 +27,7 @@ import {
   X
 } from "lucide-react"
 import Navigation from "@/components/Navigation"
+import MentorChat from "@/components/MentorChat"
 
 interface Mentor {
   id: number
@@ -52,6 +53,8 @@ export default function Mentors() {
   const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null)
   const [showFilters, setShowFilters] = useState(false)
   const [isBookingOpen, setIsBookingOpen] = useState(false)
+  const [isChatOpen, setIsChatOpen] = useState(false)
+  const [chatMentor, setChatMentor] = useState<Mentor | null>(null)
 
   const mentors: Mentor[] = [
     {
@@ -357,6 +360,16 @@ export default function Mentors() {
                     <Calendar className="w-4 h-4 mr-2" />
                     Book Session
                   </Button>
+                  <Button 
+                    variant="secondary"
+                    size="icon"
+                    onClick={() => {
+                      setChatMentor(mentor)
+                      setIsChatOpen(true)
+                    }}
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                  </Button>
                   <Dialog>
                     <DialogTrigger asChild>
                       <Button 
@@ -626,6 +639,16 @@ export default function Mentors() {
             </div>
           </DialogContent>
         </Dialog>
+
+        {/* Mentor Chat */}
+        <MentorChat 
+          mentor={chatMentor}
+          isOpen={isChatOpen}
+          onClose={() => {
+            setIsChatOpen(false)
+            setChatMentor(null)
+          }}
+        />
       </div>
     </div>
   )
