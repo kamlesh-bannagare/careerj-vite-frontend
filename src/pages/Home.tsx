@@ -17,7 +17,8 @@ import {
   Shield,
   Zap,
   Code2,
-  Cpu
+  Cpu,
+  Coffee
 } from "lucide-react"
 
 export default function Home() {
@@ -721,8 +722,17 @@ const cardVariants: Variants = {
               </ul>
             </div>
           </div>
-          <div className="text-center text-sm text-muted-foreground pt-8 border-t border-border">
-            <p>&copy; 2024 JobFinder. All rights reserved.</p>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-border">
+            <p className="text-sm text-muted-foreground">&copy; 2024 CareerJ. All rights reserved.</p>
+            <a 
+              href="https://www.buymeacoffee.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all"
+            >
+              <Coffee className="w-4 h-4" />
+              Support Us - Buy a Coffee ☕
+            </a>
           </div>
         </div>
       </footer>
