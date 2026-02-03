@@ -34,6 +34,7 @@ import PrivacyPage from "./pages/Privacy";
 import TermsPage from "./pages/Terms";
 import BottomNavigation from "./components/BottomNavigation";
 import BuyMeCoffeePopup from "./components/BuyMeCoffeePopup";
+import Footer from "./components/Footer";
 
 const queryClient = new QueryClient();
 
@@ -75,6 +76,7 @@ const App = () => (
             {/* Keep this at the bottom */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <Footer />
           <BottomNavigation />
           <BuyMeCoffeePopup />
         </BrowserRouter>
