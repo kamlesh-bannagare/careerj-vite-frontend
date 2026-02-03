@@ -50,15 +50,24 @@ export default function Footer() {
               <span className="text-sm">We keep CareerJ free for everyone</span>
               <Heart className="w-4 h-4 text-red-500 fill-red-500" />
             </div>
-            <a 
-              href="https://www.buymeacoffee.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-3 text-base font-semibold rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform"
-            >
-              <Coffee className="w-5 h-5" />
-              Support Us - Buy a Coffee ☕
-            </a>
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <a 
+                href="https://www.buymeacoffee.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-6 py-3 text-base font-semibold rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 transform"
+              >
+                <Coffee className="w-5 h-5" />
+                Support Us - Buy a Coffee ☕
+              </a>
+              <Link 
+                to="/supporters"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full border border-border hover:bg-muted transition-colors"
+              >
+                <Heart className="w-4 h-4 text-red-500" />
+                View Our Supporters
+              </Link>
+            </div>
             <p className="text-xs text-muted-foreground max-w-md">
               Your support helps us maintain this platform free for job seekers, companies, and mentors alike.
             </p>
