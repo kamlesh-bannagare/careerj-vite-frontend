@@ -682,60 +682,6 @@ const cardVariants: Variants = {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="py-12 border-t border-border">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-            <div>
-              <h4 className="font-bold mb-4">For Job Seekers</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/jobs">Browse Jobs</Link></li>
-                <li><Link to="/dashboard">My Dashboard</Link></li>
-                <li><Link to="/mock-interview">Mock Interviews</Link></li>
-                <li><Link to="/resume-enhancer">Resume Tools</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">For Companies</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/company-dashboard">Post Jobs</Link></li>
-                <li><Link to="/company-dashboard">Find Candidates</Link></li>
-                <li><Link to="/pricing">Pricing</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Resources</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/mentors">Find Mentors</Link></li>
-                <li><Link to="/analytics">Career Analytics</Link></li>
-                <li><Link to="/blog">Blog</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Company</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><Link to="/about">About Us</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
-                <li><Link to="/privacy">Privacy Policy</Link></li>
-                <li><Link to="/terms">Terms of Service</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-border">
-            <p className="text-sm text-muted-foreground">&copy; 2024 CareerJ. All rights reserved.</p>
-            <a 
-              href="https://www.buymeacoffee.com" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all"
-            >
-              <Coffee className="w-4 h-4" />
-              Support Us - Buy a Coffee ☕
-            </a>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
