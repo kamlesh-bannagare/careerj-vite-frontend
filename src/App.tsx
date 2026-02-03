@@ -33,6 +33,7 @@ import ResourcesPage from "./pages/Resources";
 import PrivacyPage from "./pages/Privacy";
 import TermsPage from "./pages/Terms";
 import BottomNavigation from "./components/BottomNavigation";
+import BuyMeCoffeePopup from "./components/BuyMeCoffeePopup";
 
 const queryClient = new QueryClient();
 
@@ -75,6 +76,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
           <BottomNavigation />
+          <BuyMeCoffeePopup />
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>
