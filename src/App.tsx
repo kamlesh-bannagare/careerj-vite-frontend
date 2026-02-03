@@ -32,6 +32,7 @@ import CompaniesPage from "./pages/Companies";
 import ResourcesPage from "./pages/Resources";
 import PrivacyPage from "./pages/Privacy";
 import TermsPage from "./pages/Terms";
+import Supporters from "./pages/Supporters";
 import BottomNavigation from "./components/BottomNavigation";
 import BuyMeCoffeePopup from "./components/BuyMeCoffeePopup";
 import Footer from "./components/Footer";
@@ -73,6 +74,7 @@ const App = () => (
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/terms" element={<TermsPage />} />
+            <Route path="/supporters" element={<Supporters />} />
             {/* Keep this at the bottom */}
             <Route path="*" element={<NotFound />} />
           </Routes>
