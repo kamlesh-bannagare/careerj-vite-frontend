@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Briefcase } from "lucide-react";
+import { Menu, X, Briefcase, Coffee } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import NotificationsDropdown from "@/components/NotificationsDropdown";
-
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -49,6 +48,15 @@ export default function Navigation() {
           </div>
 
           <div className="hidden md:flex items-center gap-2">
+            <a 
+              href="https://www.buymeacoffee.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all"
+            >
+              <Coffee className="w-4 h-4" />
+              <span className="hidden lg:inline">Buy us a Coffee</span>
+            </a>
             <NotificationsDropdown />
             <ThemeToggle />
             <Link to="/login"><Button variant="ghost">Log In</Button></Link>
@@ -75,6 +83,15 @@ export default function Navigation() {
             <Link to="/resources" className="block text-sm font-medium hover:text-primary transition-colors">Resources</Link>
 
             <div className="flex flex-col gap-2 pt-4">
+              <a 
+                href="https://www.buymeacoffee.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full px-4 py-2 text-sm font-medium rounded-md bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all"
+              >
+                <Coffee className="w-4 h-4" />
+                Buy us a Coffee
+              </a>
               <Link to="/login"><Button variant="ghost" className="w-full">Log In</Button></Link>
               <Link to="/signup"><Button className="w-full">Get Started</Button></Link>
             </div>
