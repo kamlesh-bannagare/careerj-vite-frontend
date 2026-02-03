@@ -43,7 +43,7 @@ export default function Navigation() {
           <div className="hidden md:flex items-center gap-8">
             <Link to="/jobs" className="text-sm font-medium hover:text-primary transition-colors">Find Jobs</Link>
             <Link to="/projects" className="text-sm font-medium hover:text-primary transition-colors">Live Projects</Link>
-            <Link to="/companies" className="text-sm font-medium hover:text-primary transition-colors">Companies</Link>
+            {/* <Link to="/companies" className="text-sm font-medium hover:text-primary transition-colors">Companies</Link> */}
             <Link to="/mentors" className="text-sm font-medium hover:text-primary transition-colors">Mentors</Link>
             <Link to="/resources" className="text-sm font-medium hover:text-primary transition-colors">Resources</Link>
           </div>
@@ -70,7 +70,7 @@ export default function Navigation() {
           <div className="md:hidden py-4 space-y-4">
             <Link to="/jobs" className="block text-sm font-medium hover:text-primary transition-colors">Find Jobs</Link>
             <Link to="/projects" className="block text-sm font-medium hover:text-primary transition-colors">Live Projects</Link>
-            <Link to="/companies" className="block text-sm font-medium hover:text-primary transition-colors">Companies</Link>
+            {/* <Link to="/companies" className="block text-sm font-medium hover:text-primary transition-colors">Companies</Link> */}
             <Link to="/mentors" className="block text-sm font-medium hover:text-primary transition-colors">Mentors</Link>
             <Link to="/resources" className="block text-sm font-medium hover:text-primary transition-colors">Resources</Link>
 
